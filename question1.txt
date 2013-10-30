@@ -1,0 +1,6 @@
+<q>What is the currency of Hongkong</q>
+<id>20b368e96df3d545e922aa38d111751d9b1</id>
+<p1>Shanghai</p1>
+<p2>Beijing</p2>
+<did>Android1<did>
+<f>1</f>

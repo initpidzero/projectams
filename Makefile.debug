@@ -1,0 +1,7 @@
+#!/bin/sh
+gcc -c library.c -lcrypto ;
+gcc input.c library.o -o input  -lcrypto;
+gcc output.c library.o -o output  -lcrypto;
+gcc -c udp_library.c -lcrypto ;
+gcc udp_client.c library.o udp_library.o -o udp_client  -lcrypto;
+gcc udp_server.c library.o udp_library.o -o udp_server  -lcrypto;
