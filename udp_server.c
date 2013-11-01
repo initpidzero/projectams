@@ -135,6 +135,10 @@ int create_child()
 
 int main (int argc, char*argv[])
 {
+	if(argc != 2) {
+		fprintf(stderr, "USAGE: ./udp_server port_number\n");
+		return -1;
+	}
 	if(argv[1]) 
 		port = atoi(argv[1]);
 	create_child();

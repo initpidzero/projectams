@@ -19,8 +19,8 @@ int main (int argc, char *argv[])
 		sprintf(filename, question_file);
 
 	/*TODO  We need a more elaborate way of dealing with this stuff */
-	unlink("question.txt");
-	unlink("answer.txt");
+	unlink(question_file);
+	unlink(answer_file);
 
 	create_req_file(REQ_QUESTION);
 	while(1) {

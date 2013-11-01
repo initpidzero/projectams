@@ -18,7 +18,7 @@ char *question_file = "question.txt";
 char *answer_file = "answer.txt";
 char qtags[][BUFSIZ] = {"q","id", "p1","p2", "f", "did"};
 char atags[][BUFSIZ] = {"q","id", "a", "f", "did"};
-char req_type[][15] = {"req_question","req_answer", "save_question", "save_answer"}; 
+char req_type[][15] = {"req_question","req_answer", "save_question", "save_answer", "req_stop", "req_loop"}; 
 
 /* if we even need this stuff */
 void error_exit(char *str)
@@ -209,11 +209,12 @@ int add_tag(FILE *fp, char *tag, char *string)
 }
 
 /* free the memory after usage */
-int get_sha1(char *hash, const char *message)
+int get_sha1(char *hash, struct question *q)
 {
-
+	char message[BUFSIZ];
 	unsigned char md[21];
 	int i;
+	sprintf(message, "%s%s%s%s",q->question, q->pref1,q->pref2,q->did);
 	unsigned char *sha1 = SHA1(message, strlen(message), md);
 	ap_debug("md = %x ", md[0]);
 	ap_debug("sha1 = %x \n",sha1[0]);
@@ -250,7 +251,7 @@ int create_question_file(struct question *q)
 	}
 
 	if(q->id == NULL){	
-		get_sha1(id, q->question);
+		get_sha1(id, q);
 		q->id = (unsigned char *)malloc(strlen(id)+1);
 		strcpy(q->id, id);
 	}

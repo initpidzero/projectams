@@ -1,6 +1,6 @@
 /* Author - anuz
-* This file is distibuted under GPLv2
-*/
+ * This file is distibuted under GPLv2
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,11 +69,17 @@ int main (int argc, char*argv[])
 					} else {
 						printf("What the fuck is your problem dude? Just say yes or no\n");
 					}
-					
+
 				}
 				printf("No answer yet continuing waiting....\n");
 			}
-		unlink("request.txt");
+			unlink(REQFILE);
+			printf("Do you want to exit? \n");
+			printf("Press Y/y and press enter to exit\n");
+			fgets(buffer, BUFSIZ,stdin);
+			if(!strncasecmp(buffer,"Y",1)) {
+				break;
+			} 
 		} else {
 			continue;
 		}

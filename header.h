@@ -36,10 +36,16 @@ enum request_type {
 	REQ_QUESTION,
 	REQ_ANSWER,
 	SAVE_QUESTION,
-	SAVE_ANSWER
+	SAVE_ANSWER,
+	REQ_STOP,
+	REQ_LOOP,
 };
 
 struct file_list *list;
+
+/* REPLACE with your server machine name*/
+#define HOST        "127.0.0.1"
+char hostname [BUFSIZ];
 
 #define REQFILE "request.txt"
 struct question {
