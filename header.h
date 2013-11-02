@@ -30,7 +30,7 @@ struct file_list {
 	int latest;
 	struct file_list *next;
 	/* we may need a lock as well */
-	};
+};
 
 enum request_type {
 	REQ_QUESTION,

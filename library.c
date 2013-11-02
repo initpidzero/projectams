@@ -308,11 +308,12 @@ int ask_another(char *buffer)
 			store_answer(q, buffer);
 			return 0;
 		} else {
-			return -1;
+			return 1;
 		}
+	free_question(q);
 	}
 	if(!strncasecmp(buffer,"N",1))  
-		return 1;
+		return 0;
 }
 
 int dump_buffer_to_file(const char *buf, const char *filename)
@@ -320,9 +321,27 @@ int dump_buffer_to_file(const char *buf, const char *filename)
 	FILE *fp = fopen(filename,"w");
 	if(fp == NULL) {
 		fprintf(stderr, "The file cannot be created\n");
-		return -1;
+		return 1;
 	}
 	fprintf(fp,"%s",buf);
+	fclose(fp);
+	return 0;
+}
+
+/* extract id from the given file */
+int extract_id(char *id, const char *filename)
+{
+	char buffer[BUFSIZ];
+	FILE *fp = fopen(filename, "r");
+	if(fp == NULL) {
+		fprintf(stderr, "there is no fucking way\n");
+		return 1;
+	}
+	while(fgets(buffer, BUFSIZ, fp)) {
+		if(tagify(atags[1],buffer, id) == 0) 
+			break;
+	}
+
 	fclose(fp);
 	return 0;
 }
